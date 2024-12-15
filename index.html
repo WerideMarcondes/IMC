@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+  
+   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+     <!-- biblioteca do fremework sweetalert-->
+      
+     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+   
+     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+     
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js" integrity="sha512-GsLlZN/3F2ErC5ifS5QtgpiJtWd43JWSuIgh7mbzZ8zBps+dvLusV+eNQATqgA/HdeKFVgA5v3S/cIrLF7QnIg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+     
+     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+ 
+ <link rel="stylesheet" type="text/css" href="/imc.css">
+ <script type="text/javascript" src="/imc.js"></script>
+ <script type="text/javascript" src="/jquery.mask.js"></script>
+ <title>TESTE DE BIOIMPEDANCIA</title>
+    </head>
+
+
+    <body>
+        <div class="container-fluid">
+            <input hidden type="text" id="anonimo" value="<%= User.name %>">
+            <div class="card border">
+                    <h2>Selecione o tipo de teste </h2>
+                    <div class="row">
+                        <div class="col ">
+                            <label for="Bio" class="control-label tipo_exame">bioimpedancia
+                                <input onclick="select_testeBio()" name="radio" type="radio" id="Bio"
+                                    class="input-radio radio-inline ">
+                            </label>
+                        </div>
+                        <div class="col ">
+                            <label class=" control-label tipo_exame " for="Imc">só imc
+                                <input type="radio" name="radio" onclick="select_testeImc()" id="Imc"
+                                    class="input-radio radio-inline ">
+                            </label>
+                        </div>
+                    </div>
+                    <form action="/resultimc/<%= User.token %>" method="post" id="form" class="form">
+                    <div class="card_forms">
+                        <input hidden name="id" value="<%= User.id%>">
+                        <div class="row">
+                            <div class="col ">
+                                <label class="text" for="sexo">SEXO
+                                    <select id="sexo" name="sexo" class="form-control select Bio"
+                                        aria-label="Default select example">
+                                        <option value="não informado">SEXO</option>
+                                        <option value="Masculino">MASCULINO</option>
+                                        <option value="Feminino">FEMININO</option>
+                                    </select>
+                                </label>
+                                <label class="text idade" for="idade">idade
+                                    <input id="idade" name="idade" autocomplete="off" class="form-control Bio">
+                                </label>
+                                <label class="text" for="idade">Nome
+                                    <input id="Nome" name="nome" autocomplete="off" placeholder="Nome e Sobrenome"
+                                        class="form-control Bio">
+                                </label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <label class="text" for="pulso">pulso <a data-bs-toggle="modal"
+                                        data-bs-target="#medirpulso" class="second-href" href="/">Exemplo medir
+                                        Pulso</a>
+                                    <input name="pulso" autocomplete="off" placeholder="Diamentro pulso Ex: 10cm"
+                                        class="form-control Bio" id="pulso">
+                                </label>
+                                <label class="text" for="joelho">joelho <a data-bs-toggle="modal"
+                                        data-bs-target="#medirjoelho " class="second-href" href="/">Exemplo medir
+                                        joelho</a>
+                                    <input name="joelho" class="form-control Bio"
+                                        placeholder="Diamentro joelho Ex: 20cm" id="joelho">
+                                </label>
+                            </div>
+                        </div>
+                    
+                        <div class="row">
+                            <div class="col">
+                                <label class="text">cintura <a data-bs-toggle="modal" data-bs-target="#medircintura "
+                                        class="second-href" href="/">Exemplo medir cintura</a>
+                                    <input name="cintura" placeholder="0,00" id="cintura" autocomplete="off"
+                                        class="form-control Bio"></label>
+                                <label class="text">quadril <a data-bs-toggle="modal" data-bs-target="#medirquadril "
+                                        class="second-href" href="/">Exemplo medir quadril</a>
+                                    <input name="quadril" placeholder="0,00" id="quadril" class="form-control Bio"
+                                        autocomplete="off"></label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                    <label class="text" for="agua">agua corporal
+                                        <input name="Agua" placeholder="00%" class="form-control Bio" id="agua">
+                                    </label>
+                                <label class="text" for="peso">PESO
+                                    <input name="peso" type="text" class="form-control Imc" id="peso"
+                                        aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm"
+                                        placeholder="000,00"></label>
+                                <label class="text" id="inputGroup-sizing-sm" for="altura">ALTURA
+                                    <input name="altura" type="text" class="form-control Imc" id="altura"
+                                        aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm"
+                                        placeholder="0,00"></label>
+                            </div>
+                        </div>
+                    </div>
+                        <div class="row ">
+                            <div class="col">
+                                <button onclick="resultImc()" id="calcular" type="button"
+                                    class="btn btn-primary">Calcular</button>
+                                    <button  id="resultado" type="button"
+                                    class="btn btn-success" data-bs-toggle="modal" data-bs-target=".result" >Ver Resultados</button>
+                                <button type="button" onclick="apagar()" id="limpar"
+                                    class="btn btn-danger">Limpar</button>
+                                <a href="/user/<%= User.token %>">
+                                    <div id="limpar" ></div></a>
+                        </div>
+                        <div class="row ">
+                            <div class="col visitante">
+                        <a style="text-decoration:none" class="href" class="saidebar-link"
+                        >
+                        <div></div></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+                         <!-- Modal -->
+<div class="modal fade result" id="modified" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content-result">
+        <div class="modal-header">
+          <h5 class="modal-title h2second-content" id="exampleModalLabel">Resultados</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body-result">
+                    <div class="row">
+                        <div class="col">
+                            <label class="textsecond-content col-md 2" id="inputGroup-sizing-sm" for="datateste">DATA DO
+                                TESTE
+                                <input readonly type="input" name="datateste" class="form-control Imc" id="datateste"
+                                    aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+                            </label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <label class="textsecond-content" id="inputGroup-sizing-sm" for="complementoRCQ">INFORMAÇÃO
+                                COMPLEMENTAR  AGUA CORPORAL TOTAL
+                                <textarea name="agua" readonly type="text" type="textsecond-content"
+                                    class="form-control Bio" id="complementoACT" aria-label="Sizing example input"
+                                    aria-describedby="inputGroup-sizing-sm"></textarea>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <label class="textsecond-content" for="seuRCQ">Seu RCQ
+                                <input name="rcq" readonly type="textsecond-content" class="form-control Bio"
+                                    id="seuRCQ" aria-label="Sizing example input"
+                                    aria-describedby="inputGroup-sizing-sm">
+                            </label>
+                        </div>
+                        <div class="col">
+                            <label class="textsecond-content" id="inputGroup-sizing-sm" for="complementomassaossea">SUA
+                                MASSA OSSEA
+                                <input name="massaossea" readonly type="textsecond-content" class="form-control Bio"
+                                    id="complementomassaossea" aria-label="Sizing example input"
+                                    aria-describedby="inputGroup-sizing-sm">
+                            </label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <label class="textsecond-content" id="inputGroup-sizing-sm" for="complementoRCQ">INFORMAÇÃO
+                                COMPLEMENTAR  RCQ
+                                <input name="inforcq" readonly type="textsecond-content" class="form-control Bio"
+                                    id="complementoRCQ" aria-label="Sizing example input"
+                                    aria-describedby="inputGroup-sizing-sm">
+                            </label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <label class="textsecond-content" for="seuImc">SEU IMC
+                                <input name="Imc" readonly type="text" class="form-control Imc" id="seuImc"
+                                    aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+                            </label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col visitante">
+                            <label class="textsecond-content" id="inputGroup-sizing-sm" for="complementoImc">INFORMAÇÃO
+                                COMPLEMENTAR IMC
+                                <input name="infoimc" readonly type="text" class="form-control Imc" id="complementoImc"
+                                    aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+                            </label>
+                           
+                        </div>
+                        <div class="row">
+                            <div class="col visitante">
+                        <div  id="enviar" ></div>
+                    </div>
+                </div>
+            </div>
+                    </form>    
+</div>
+</div>
+        </div>
+    </div>
+        <!-- Modal exemplo medir joelho-->
+        <div class="modal fade" id="medirjoelho" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+            data-backdrop="static" data-keyboard="false">
+            <div class="modal-dialog  modal-dialog-centered">
+                <div class="container-fluid-modal ">
+                    <div class="modal-content modal-content-medirjoelho">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel ">
+                                Obsereve a Imagem abaixo
+                            </h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body-medirjoelho">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal exemplo medir Pulso-->
+        <div class="modal fade" id="medirpulso" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+            data-backdrop="static" data-keyboard="false">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="container-fluid-modal ">
+                    <div class="modal-content modal-content-medirpulso">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel ">
+                                Obsereve a Imagem abaixo
+                            </h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body-medirpulso">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal exemplo medir quadril-->
+        <div class="modal fade" id="medirquadril" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+            data-backdrop="static" data-keyboard="false">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="container-fluid-modal ">
+                    <div class="modal-content modal-content-medirquadril">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel ">
+                                Obsereve a Imagem abaixo
+                            </h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body-medirquadril">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Modal exemplo medir cintura-->
+        <div class="modal fade" id="medircintura" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+            data-backdrop="static" data-keyboard="false">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="container-fluid-modal ">
+                    <div class="modal-content modal-content-medircintura ">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel ">
+                                Obsereve a Imagem abaixo
+                            </h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body-medircintura ">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+    <script type="text/javascript" src="/js/jquery.mask.js"></script>
+    </html>
