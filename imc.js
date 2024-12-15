@@ -44,6 +44,7 @@ $(document).ready(function () {
 
 //funcao teste bioimpedancia
 function select_testeBio() {
+  document.getElementById("resultado").hidden = true;
   document.getElementById("enviar").hidden = false; //desabilitar form
   var inputBio = document.querySelectorAll(".form-control");
   document.getElementById("sexo").disabled = false;
@@ -77,6 +78,7 @@ function select_testeBio() {
 }
 //funcao select teste imc
 function select_testeImc() {
+  document.getElementById("resultado").hidden = true;
   var inputBio = document.querySelectorAll(".Bio");
   var inputImc = document.querySelectorAll(".Imc");
   document.getElementById("enviar").hidden = true; //desabilitar form
