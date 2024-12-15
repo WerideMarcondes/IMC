@@ -70,9 +70,8 @@ function select_testeBio() {
     console.log(inputBio[i].value);
     document.getElementById("sexo").value === "sexo";
     Swal.fire(
-      "Por ser um exame mais completo, Talves você precisa de uma balança especifica, fita Metrica e paquimetro!",
+      "Por ser um exame mais completo, você precisa usar balança especifica  como a Omron HBF-226, a Tanita BC-603FS e a Tanita BC-545N e também fita Metrica e paquimetro!",
       "",
-      "success"
     );
   }
 }
@@ -100,7 +99,7 @@ function select_testeImc() {
     inputImc[i].disabled = false;
     inputImc[i].style.background = "white";
     Swal.fire(
-      "Para este teste você só precisa preecher seu peso e altura!",
+      "Para este teste você só precisa preencher seu peso e altura!",
       "",
       "success"
     );
