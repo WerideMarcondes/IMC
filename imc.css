@@ -259,8 +259,8 @@ h2 {
   .modal-content-result {
     box-shadow: 5px 5px 5px 5px rgb(240, 241, 242);
     background-color: hsl(156, 2%, 43%);
-    width: 600px;
-    height: 500px;
+    width: 380px;
+    height: 450px;
     text-align: center;
   }
   .card {
@@ -386,7 +386,7 @@ h2 {
   }
 
   #complementoACT {
-    width: 450px;
+    width: 350px;
     height: 60px;
     font-size: 10px;
     font-weight: bold;
@@ -394,7 +394,7 @@ h2 {
   }
 
   #complementoImc {
-    width: 400px;
+    width: 350px;
     height: 40px;
     font-size: 10px;
     font-weight: bold;
@@ -402,7 +402,7 @@ h2 {
   }
 
   #complementoRCQ {
-    width: 400px;
+    width: 350px;
     height: 40px;
     font-size: 10px;
     font-weight: bold;

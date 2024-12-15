@@ -1,7 +1,7 @@
 // iniciar campos desabilitados
 window.onload = function () {
   document.getElementById("enviar").disabled = true;
-  document.getElementById("resultado").hidden = true;
+  // document.getElementById("resultado").hidden = true;
   Swal.fire(
     "Para realizar o teste, você precisa Selecionar o tipo desejado!",
     "",
