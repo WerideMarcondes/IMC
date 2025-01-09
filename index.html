@@ -30,18 +30,20 @@
             <div class="card border">
                     <h2>Selecione o tipo de teste </h2>
                     <div class="row">
-                        <div class="col ">
-                            <label for="Bio" class="control-label tipo_exame">bioimpedancia
-                                <input onclick="select_testeBio()" name="radio" type="radio" id="Bio"
-                                    class="input-radio radio-inline ">
+                        <div class="col form-check form-switch">
+                            <label class=" control-label tipo_exame " for="Bio">bioimpedância
+                                <input type="radio" name="radio" onclick="select_testeBio()"  id="Bio"
+                                    class="form-check-input ">
                             </label>
                         </div>
-                        <div class="col ">
-                            <label class=" control-label tipo_exame " for="Imc">apenas imc
+                  
+                        <div class="col form-check form-switch">
+                            <label class=" control-label tipo_exame " for="Imc">só imc
                                 <input type="radio" name="radio" onclick="select_testeImc()" id="Imc"
-                                    class="input-radio radio-inline ">
+                                    class="form-check-input ">
                             </label>
                         </div>
+                        
                     </div>
                     <form action="/resultimc/<%= User.token %>" method="post" id="form" class="form">
                     <div class="card_forms">
